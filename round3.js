@@ -130,3 +130,55 @@ printPyramid(2);
 // Test 4: Edge case — zero rows
 console.log("Test 4:");
 printPyramid(0);
+
+
+
+/*
+Challenge 16: fibonacci(n)
+
+Pseudocode:
+1. If n is less than or equal to zero, return an empty string.
+2. Create an empty result string.
+3. Start with a = 0 and b = 1.
+4. Loop n times.
+5. Add a to the result, adding a comma between numbers.
+6. Calculate the next number as a + b.
+7. Update a and b.
+8. Return the result string.
+*/
+
+function fibonacci(n) {
+  if (n <= 0) {
+    return "";
+  }
+
+  let result = "";
+  let a = 0;
+  let b = 1;
+
+  for (let i = 0; i < n; i++) {
+    if (i > 0) {
+      result += ", ";
+    }
+
+    result += a;
+
+    const next = a + b;
+    a = b;
+    b = next;
+  }
+
+  return result;
+}
+
+// Test 1: First eight numbers
+console.log(fibonacci(8)); // 0, 1, 1, 2, 3, 5, 8, 13
+
+// Test 2: First three numbers
+console.log(fibonacci(3)); // 0, 1, 1
+
+// Test 3: One number
+console.log(fibonacci(1)); // 0
+
+// Test 4: Edge case — zero
+console.log(fibonacci(0)); // ""
