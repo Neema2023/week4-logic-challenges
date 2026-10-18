@@ -36,3 +36,41 @@ console.log(reverseString("A")); // A
 
 // Test 4: Edge case — empty string
 console.log(reverseString("")); // ""
+
+
+/*
+Challenge 7: countChar(str, char)
+
+Pseudocode:
+1. Set count to zero.
+2. Convert the string and target character to lowercase.
+3. Loop through each character in the string.
+4. If the current character matches the target, increase count.
+5. Return count.
+*/
+
+function countChar(str, char) {
+  let count = 0;
+  const text = str.toLowerCase();
+  const target = char.toLowerCase();
+
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === target) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+// Test 1: Repeated character
+console.log(countChar("Banana", "a")); // 3
+
+// Test 2: Case-insensitive counting
+console.log(countChar("Hello", "L")); // 2
+
+// Test 3: Character not found
+console.log(countChar("Kigali", "z")); // 0
+
+// Test 4: Edge case — empty string
+console.log(countChar("", "a")); // 0
