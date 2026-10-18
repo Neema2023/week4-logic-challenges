@@ -122,3 +122,53 @@ console.log(isPalindrome("hello")); // false
 
 // Test 4: Edge case — empty string
 console.log(isPalindrome("")); // true
+
+
+
+/*
+Challenge 9: titleCase(str)
+
+Pseudocode:
+1. Create an empty result string.
+2. Create a variable that shows whether the next character starts a word.
+3. Loop through every character in the input.
+4. If it starts a word, convert it to uppercase.
+5. Otherwise, convert it to lowercase.
+6. After a space, mark the next character as the start of a word.
+7. Return the result.
+*/
+
+function titleCase(str) {
+  let result = "";
+  let newWord = true;
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+
+    if (char === " ") {
+      result += char;
+      newWord = true;
+    } else if (newWord) {
+      result += char.toUpperCase();
+      newWord = false;
+    } else {
+      result += char.toLowerCase();
+    }
+  }
+
+  return result;
+}
+
+// Test 1: Normal sentence
+console.log(titleCase("welcome to kigali tech hub"));
+// Welcome To Kigali Tech Hub
+
+// Test 2: Mixed uppercase and lowercase
+console.log(titleCase("jAVASCRIPT IS FUN"));
+// Javascript Is Fun
+
+// Test 3: One word
+console.log(titleCase("hello")); // Hello
+
+// Test 4: Edge case — empty string
+console.log(titleCase("")); // ""
