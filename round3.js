@@ -10,11 +10,12 @@ Pseudocode:
 5. Return total.
 
 Comparison:
-The loop is easy to follow and practise.
-The formula n * (n + 1) / 2 is shorter and faster,
-but the loop helps us practise iteration.
+The loop is easy to follow and practise iteration.
+The formula n * (n + 1) / 2 is shorter and faster.
+The loop helps us understand how iteration works.
 */
 
+// Solution 1: Using a loop
 function sumTo(n) {
   if (n < 1) {
     return 0;
@@ -29,17 +30,37 @@ function sumTo(n) {
   return total;
 }
 
-// Test 1: Normal input
-console.log(sumTo(5)); // 15
-
-// Test 2: One
-console.log(sumTo(1)); // 1
-
-// Test 3: Larger number
+// Tests for the loop solution
+console.log(sumTo(5));  // 15
+console.log(sumTo(1));  // 1
 console.log(sumTo(10)); // 55
+console.log(sumTo(0));  // Edge case: 0
 
-// Test 4: Edge case — zero
-console.log(sumTo(0)); // 0
+/*
+Pseudocode for sumToFormula(n):
+1. If n is less than 1, return 0.
+2. Calculate n * (n + 1) / 2.
+3. Return the result.
+*/
+
+// Solution 2: Using a formula
+function sumToFormula(n) {
+  if (n < 1) {
+    return 0;
+  }
+
+  return n * (n + 1) / 2;
+}
+
+// Tests for the formula solution
+console.log(sumToFormula(5));  // 15
+console.log(sumToFormula(1));  // 1
+console.log(sumToFormula(10)); // 55
+console.log(sumToFormula(0));  // Edge case: 0
+
+// Compare both solutions
+console.log(sumTo(5) === sumToFormula(5));   // true
+console.log(sumTo(10) === sumToFormula(10)); // true
 
 
 
