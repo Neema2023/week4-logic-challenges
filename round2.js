@@ -172,3 +172,46 @@ console.log(titleCase("hello")); // Hello
 
 // Test 4: Edge case — empty string
 console.log(titleCase("")); // ""
+
+
+
+/*
+Challenge 10: maskPhone(phone)
+
+Pseudocode:
+1. Check whether the phone number has exactly 10 characters.
+2. Check whether it contains only digits.
+3. Check whether it starts with "07".
+4. If any check fails, return "Invalid".
+5. Otherwise, keep the first 3 digits.
+6. Replace the middle 4 digits with "****".
+7. Keep the last 3 digits and return the result.
+*/
+
+function maskPhone(phone) {
+  if (phone.length !== 10) {
+    return "Invalid";
+  }
+
+  if (!/^\d{10}$/.test(phone)) {
+    return "Invalid";
+  }
+
+  if (!phone.startsWith("07")) {
+    return "Invalid";
+  }
+
+  return phone.slice(0, 3) + "****" + phone.slice(7);
+}
+
+// Test 1: Valid phone number
+console.log(maskPhone("0788123456")); // 078****456
+
+// Test 2: Valid number with a different prefix
+console.log(maskPhone("0723456789")); // 072****789
+
+// Test 3: Invalid prefix
+console.log(maskPhone("0888123456")); // Invalid
+
+// Test 4: Edge case — too short
+console.log(maskPhone("0788123")); // Invalid
