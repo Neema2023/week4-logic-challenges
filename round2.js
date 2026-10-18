@@ -259,3 +259,55 @@ console.log(longestWord("blue green black"));
 // Test 4: Edge case — empty string
 console.log(longestWord(""));
 // ""
+
+
+/*
+Challenge 12: compress(str)
+
+Pseudocode:
+1. If the string is empty, return an empty string.
+2. Set the current character to the first character.
+3. Set count to 1 and create an empty result string.
+4. Loop through the remaining characters.
+5. If the character matches the current character, increase count.
+6. Otherwise, add the current character and count to the result.
+7. Update the current character and reset count to 1.
+8. Add the last character and count.
+9. Return the result.
+*/
+
+function compress(str) {
+  if (str.length === 0) {
+    return "";
+  }
+
+  let result = "";
+  let currentChar = str[0];
+  let count = 1;
+
+  for (let i = 1; i < str.length; i++) {
+    if (str[i] === currentChar) {
+      count++;
+    } else {
+      result += currentChar + count;
+      currentChar = str[i];
+      count = 1;
+    }
+  }
+
+  result += currentChar + count;
+
+  return result;
+}
+
+// Test 1: Repeated groups
+console.log(compress("aaabccdddd")); // a3b1c2d4
+
+// Test 2: All characters are the same
+console.log(compress("aaaa")); // a4
+
+// Test 3: No repeated characters
+console.log(compress("abc")); // a1b1c1
+
+// Test 4: Edge case — empty string
+console.log(compress("")); // ""
