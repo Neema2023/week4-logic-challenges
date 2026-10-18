@@ -131,3 +131,42 @@ console.log(motoFare(2.5)); // 407
 
 // Test 4: Edge case — zero distance
 console.log(motoFare(0)); // 0
+
+
+/*
+Challenge 4: convertSeconds(total)
+
+Pseudocode:
+1. Calculate the hours using Math.floor(total / 3600).
+2. Calculate the remaining minutes.
+3. Calculate the remaining seconds.
+4. Make minutes and seconds have two digits.
+5. Return the result in the format "2h 05m 09s".
+
+Comparison:
+Using separate variables makes the code easier to read.
+A single complex expression might be shorter, but it is harder to understand.
+*/
+
+function convertSeconds(total) {
+  const hours = Math.floor(total / 3600);
+  const minutes = Math.floor((total % 3600) / 60);
+  const seconds = total % 60;
+
+  const formattedMinutes = String(minutes).padStart(2, "0");
+  const formattedSeconds = String(seconds).padStart(2, "0");
+
+  return `${hours}h ${formattedMinutes}m ${formattedSeconds}s`;
+}
+
+// Test 1: Normal time
+console.log(convertSeconds(7509)); // 2h 05m 09s
+
+// Test 2: Less than one minute
+console.log(convertSeconds(45)); // 0h 00m 45s
+
+// Test 3: Exactly one hour
+console.log(convertSeconds(3600)); // 1h 00m 00s
+
+// Test 4: Edge case — zero seconds
+console.log(convertSeconds(0)); // 0h 00m 00s
