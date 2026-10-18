@@ -182,3 +182,62 @@ console.log(fibonacci(1)); // 0
 
 // Test 4: Edge case — zero
 console.log(fibonacci(0)); // ""
+
+
+
+/*
+Challenge 17: guessingGameSimulator(secret)
+
+Pseudocode:
+1. Set low to 1 and high to 100.
+2. Set guesses to 0.
+3. While low is less than or equal to high:
+   a. Guess the middle number.
+   b. Increase guesses and print the guess.
+   c. If the guess equals secret, return guesses.
+   d. If the guess is too low, move low above the guess.
+   e. Otherwise, move high below the guess.
+4. Return -1 if secret is outside the allowed range.
+*/
+
+function guessingGameSimulator(secret) {
+  if (!Number.isInteger(secret) || secret < 1 || secret > 100) {
+    return -1;
+  }
+
+  let low = 1;
+  let high = 100;
+  let guesses = 0;
+
+  while (low <= high) {
+    const guess = Math.floor((low + high) / 2);
+    guesses++;
+
+    console.log("Guess:", guess);
+
+    if (guess === secret) {
+      console.log("Found in", guesses, "guesses");
+      return guesses;
+    }
+
+    if (guess < secret) {
+      low = guess + 1;
+    } else {
+      high = guess - 1;
+    }
+  }
+
+  return -1;
+}
+
+// Test 1: Secret is 50
+console.log("Test 1:", guessingGameSimulator(50));
+
+// Test 2: Secret is 1
+console.log("Test 2:", guessingGameSimulator(1));
+
+// Test 3: Secret is 100
+console.log("Test 3:", guessingGameSimulator(100));
+
+// Test 4: Edge case — outside the range
+console.log("Test 4:", guessingGameSimulator(0)); // -1
