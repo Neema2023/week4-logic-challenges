@@ -91,3 +91,43 @@ console.log(getBMICategory(85, 1.7)); // Overweight
 
 // Test 4: Edge case — invalid height
 console.log(getBMICategory(60, 0)); // Invalid height
+
+
+/*
+Challenge 3: motoFare(km)
+
+Pseudocode:
+1. If km is 0 or less, return 0.
+2. If km is 2 or less, return 300.
+3. Calculate the extra distance after the first 2 km.
+4. Round the extra distance up using Math.ceil().
+5. Add 107 RWF for each extra kilometer to 300 RWF.
+6. Return the total fare.
+*/
+
+function motoFare(km) {
+  if (km <= 0) {
+    return 0;
+  }
+
+  if (km <= 2) {
+    return 300;
+  }
+
+  const extraKm = Math.ceil(km - 2);
+  const fare = 300 + extraKm * 107;
+
+  return fare;
+}
+
+// Test 1: Normal journey
+console.log(motoFare(5)); // 621
+
+// Test 2: Exactly 2 km
+console.log(motoFare(2)); // 300
+
+// Test 3: Partial extra kilometer
+console.log(motoFare(2.5)); // 407
+
+// Test 4: Edge case — zero distance
+console.log(motoFare(0)); // 0
