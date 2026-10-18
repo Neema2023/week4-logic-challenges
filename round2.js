@@ -215,3 +215,47 @@ console.log(maskPhone("0888123456")); // Invalid
 
 // Test 4: Edge case — too short
 console.log(maskPhone("0788123")); // Invalid
+
+
+/*
+Challenge 11: longestWord(sentence)
+
+Pseudocode:
+1. Split the sentence into words using spaces.
+2. Set the first word as the longest word.
+3. Loop through the remaining words.
+4. If a word is longer than the current longest word,
+   update the longest word.
+5. Return the longest word.
+
+If two words have the same length, keep the first one.
+*/
+
+function longestWord(sentence) {
+  const words = sentence.split(" ");
+  let longest = "";
+
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > longest.length) {
+      longest = words[i];
+    }
+  }
+
+  return longest;
+}
+
+// Test 1: Normal sentence
+console.log(longestWord("I love JavaScript programming"));
+// programming
+
+// Test 2: Different word lengths
+console.log(longestWord("cat elephant dog"));
+// elephant
+
+// Test 3: Tie — return the first longest word
+console.log(longestWord("blue green black"));
+// green
+
+// Test 4: Edge case — empty string
+console.log(longestWord(""));
+// ""
