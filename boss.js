@@ -46,25 +46,19 @@ function validatePassword(pw) {
   };
 }
 
-// Test 1: Valid password
+// Tests
 console.log(validatePassword("Kigali123!"));
-
-// Test 2: Missing uppercase and special character
 console.log(validatePassword("kigali123"));
-
-// Test 3: Password contains a space
 console.log(validatePassword("Kigali 123!"));
-
-// Test 4: Edge case — empty password
-console.log(validatePassword(""));
-
+console.log(validatePassword("")); // Edge case
 
 
 /*
 Challenge 19: romanNumeral(n)
 
 Pseudocode:
-1. If n is less than 1 or greater than 3999, return "Invalid".
+1. If n is not an integer, less than 1, or greater than 3999,
+   return "Invalid".
 2. Create arrays of Roman numeral values and symbols.
 3. Create an empty result string.
 4. Loop through the values from largest to smallest.
@@ -101,14 +95,50 @@ function romanNumeral(n) {
   return result;
 }
 
-// Test 1: Normal number
+// Tests
 console.log(romanNumeral(1994)); // MCMXCIV
+console.log(romanNumeral(9));    // IX
+console.log(romanNumeral(58));   // LVIII
+console.log(romanNumeral(0));    // Edge case: Invalid
 
-// Test 2: Small number
-console.log(romanNumeral(9)); // IX
 
-// Test 3: Another number
-console.log(romanNumeral(58)); // LVIII
+/*
+Challenge 20: nationalIdCheck(id)
 
-// Test 4: Edge case — zero
-console.log(romanNumeral(0)); // Invalid
+Pseudocode:
+1. Check whether the ID contains exactly 16 digits.
+2. Check whether the first digit is 1.
+3. Extract the birth year and check whether it is between
+   1900 and 2026.
+4. Check whether the sixth digit is 7 or 8.
+5. Return an error message if a check fails.
+6. Return true if all checks pass.
+*/
+
+function nationalIdCheck(id) {
+  if (!/^\d{16}$/.test(id)) {
+    return "Invalid: ID must contain exactly 16 digits.";
+  }
+
+  if (id[0] !== "1") {
+    return "Invalid: First digit must be 1.";
+  }
+
+  const birthYear = Number(id.slice(1, 5));
+
+  if (birthYear < 1900 || birthYear > 2026) {
+    return "Invalid: Birth year must be between 1900 and 2026.";
+  }
+
+  if (id[5] !== "7" && id[5] !== "8") {
+    return "Invalid: Sixth digit must be 7 or 8.";
+  }
+
+  return true;
+}
+
+// Tests
+console.log(nationalIdCheck("1199877234567890"));
+console.log(nationalIdCheck("2199877234567890"));
+console.log(nationalIdCheck("12345"));
+console.log(nationalIdCheck("")); // Edge case
