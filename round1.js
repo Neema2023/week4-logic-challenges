@@ -170,3 +170,65 @@ console.log(convertSeconds(3600)); // 1h 00m 00s
 
 // Test 4: Edge case — zero seconds
 console.log(convertSeconds(0)); // 0h 00m 00s
+
+
+
+/*
+Challenge 5: changeMaker(amount)
+
+Pseudocode:
+1. Create an array of available denominations from largest to smallest.
+2. Create an empty result array.
+3. For each denomination:
+   a. Calculate how many times it fits into the remaining amount.
+   b. If the count is greater than zero, save the denomination and count.
+   c. Subtract the value used from the remaining amount.
+4. Return the result.
+
+Comparison:
+A loop avoids repeating the same calculation for every denomination.
+Writing a separate if statement for each denomination is possible,
+but the loop is easier to maintain when denominations change.
+*/
+
+function changeMaker(amount) {
+  if (amount < 0 || !Number.isInteger(amount)) {
+    return "Invalid amount";
+  }
+
+  const denominations = [5000, 2000, 1000, 500, 100, 50, 20, 10, 5, 1];
+  const result = [];
+
+  for (let i = 0; i < denominations.length; i++) {
+    const denomination = denominations[i];
+    const count = Math.floor(amount / denomination);
+
+    if (count > 0) {
+      result.push(`${count} x ${denomination} RWF`);
+      amount = amount % denomination;
+    }
+  }
+
+  if (result.length === 0) {
+    return "No change needed";
+  }
+
+  return result.join(", ");
+}
+
+// Test 1: Normal amount
+console.log(changeMaker(7385));
+// 1 x 5000 RWF, 1 x 2000 RWF, 3 x 100 RWF,
+// 1 x 50 RWF, 1 x 20 RWF, 1 x 10 RWF, 1 x 5 RWF
+
+// Test 2: Exact denomination
+console.log(changeMaker(5000));
+// 1 x 5000 RWF
+
+// Test 3: Zero amount
+console.log(changeMaker(0));
+// No change needed
+
+// Test 4: Edge case — negative amount
+console.log(changeMaker(-100));
+// Invalid amount
